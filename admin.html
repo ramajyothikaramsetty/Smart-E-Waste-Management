@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Smart E-Waste</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        body {
+            margin: 0;
+            background: #f4f7f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background: #1b5e20;
+            padding: 15px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 8px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        h1 {
+            color: #1b5e20;
+        }
+
+        /* DASHBOARD */
+
+        .dashboard {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(200px, 1fr));
+
+            gap: 20px;
+
+            margin: 25px 0;
+        }
+
+        .card {
+            background: white;
+
+            padding: 22px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,.1);
+        }
+
+        .card h3 {
+            color: #555;
+        }
+
+        .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        /* SEARCH */
+
+        .search-box {
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,.1);
+
+            margin: 25px 0;
+        }
+
+        .search-box input {
+            width: 70%;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 7px;
+        }
+
+        .search-box button {
+            padding: 12px 18px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #2e7d32;
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+        /* CHART */
+
+        .chart-container {
+            max-width: 500px;
+
+            margin: 30px auto;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,.1);
+        }
+
+        /* TABLE */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            background: white;
+
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+
+            padding: 10px;
+
+            text-align: center;
+        }
+
+        th {
+            background: #2e7d32;
+
+            color: white;
+        }
+
+        select {
+            padding: 6px;
+
+            border-radius: 5px;
+        }
+
+        .delete-btn {
+            background: #d32f2f;
+
+            color: white;
+
+            border: none;
+
+            padding: 7px 10px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #b71c1c;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        ♻️ Smart E-Waste
+    </div>
+
+    <div>
+
+        <a href="index.html">
+            🏠 Home
+        </a>
+
+        <a href="request.html">
+            📋 Requests
+        </a>
+
+        <a href="profile.html">
+            👤 Profile
+        </a>
+
+        <a href="centres.html">
+            🗺️ Centres
+        </a>
+
+        <a href="admin.html">
+            📊 Admin
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>
+        📊 Admin Dashboard
+    </h1>
+
+    <p>
+        Manage and monitor Smart E-Waste requests.
+    </p>
+
+
+    <!-- DASHBOARD -->
+
+    <div class="dashboard">
+
+        <div class="card">
+
+            <h3>
+                📋 Total Requests
+            </h3>
+
+            <div
+                class="number"
+                id="totalRequests">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                📦 Total Quantity
+            </h3>
+
+            <div
+                class="number"
+                id="totalQuantity">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                ⚖️ Total Weight
+            </h3>
+
+            <div
+                class="number"
+                id="totalWeight">
+                0 kg
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                ⏳ Pending
+            </h3>
+
+            <div
+                class="number"
+                id="pendingRequests">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                ✅ Completed
+            </h3>
+
+            <div
+                class="number"
+                id="completedRequests">
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search requests..."
+            onkeyup="searchRequests()"
+        >
+
+        <button onclick="loadRequests()">
+            🔄 Refresh
+        </button>
+
+    </div>
+
+
+    <!-- PIE CHART -->
+
+    <h2 style="text-align:center;">
+        📊 E-Waste Type Distribution
+    </h2>
+
+
+    <div class="chart-container">
+
+        <canvas id="wasteChart"></canvas>
+
+    </div>
+
+
+    <!-- REQUEST TABLE -->
+
+    <h2>
+        📋 All Requests
+    </h2>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Name</th>
+
+                    <th>Email</th>
+
+                    <th>Waste Type</th>
+
+                    <th>Quantity</th>
+
+                    <th>Weight</th>
+
+                    <th>Location</th>
+
+                    <th>Date</th>
+
+                    <th>Status</th>
+
+                    <th>Delete</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="adminTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let allRequests = [];
+
+let wasteChart;
+
+
+// ==========================================
+// LOAD REQUESTS
+// ==========================================
+
+async function loadRequests() {
+
+    try {
+
+        const response =
+            await fetch(
+                "http://127.0.0.1:5000/pickup-requests"
+            );
+
+
+        allRequests =
+            await response.json();
+
+
+        updateDashboard(allRequests);
+
+        displayRequests(allRequests);
+
+        createChart(allRequests);
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("adminTable")
+            .innerHTML =
+            "<tr><td colspan='10'>❌ Backend server is not running.</td></tr>";
+
+    }
+
+}
+
+
+// ==========================================
+// DASHBOARD
+// ==========================================
+
+function updateDashboard(data) {
+
+    document.getElementById("totalRequests")
+        .textContent =
+        data.length;
+
+
+    let quantity = 0;
+
+    let weight = 0;
+
+    let pending = 0;
+
+    let completed = 0;
+
+
+    data.forEach(request => {
+
+        quantity +=
+            Number(request.quantity) || 0;
+
+
+        weight +=
+            Number(request.estimated_weight) || 0;
+
+
+        if (
+            !request.status ||
+            request.status === "Pending"
+        ) {
+
+            pending++;
+
+        }
+
+
+        if (
+            request.status === "Completed"
+        ) {
+
+            completed++;
+
+        }
+
+    });
+
+
+    document.getElementById("totalQuantity")
+        .textContent =
+        quantity;
+
+
+    document.getElementById("totalWeight")
+        .textContent =
+        weight.toFixed(2) + " kg";
+
+
+    document.getElementById("pendingRequests")
+        .textContent =
+        pending;
+
+
+    document.getElementById("completedRequests")
+        .textContent =
+        completed;
+
+}
+
+
+// ==========================================
+// DISPLAY TABLE
+// ==========================================
+
+function displayRequests(data) {
+
+    const table =
+        document.getElementById("adminTable");
+
+
+    table.innerHTML = "";
+
+
+    if (data.length === 0) {
+
+        table.innerHTML =
+            "<tr><td colspan='10'>No requests found.</td></tr>";
+
+        return;
+
+    }
+
+
+    data.forEach(request => {
+
+        const row =
+            document.createElement("tr");
+
+
+        const status =
+            request.status || "Pending";
+
+
+        row.innerHTML = `
+
+            <td>${request.id}</td>
+
+            <td>${request.name}</td>
+
+            <td>${request.email}</td>
+
+            <td>${request.waste_type}</td>
+
+            <td>${request.quantity}</td>
+
+            <td>
+                ${request.estimated_weight} kg
+            </td>
+
+            <td>${request.location}</td>
+
+            <td>${request.pickup_date}</td>
+
+            <td>
+
+                <select
+                    onchange="
+                    updateStatus(
+                        ${request.id},
+                        this.value
+                    )"
+                >
+
+                    <option
+                        value="Pending"
+                        ${status === "Pending"
+                        ? "selected"
+                        : ""}>
+                        Pending
+                    </option>
+
+                    <option
+                        value="Picked Up"
+                        ${status === "Picked Up"
+                        ? "selected"
+                        : ""}>
+                        Picked Up
+                    </option>
+
+                    <option
+                        value="Completed"
+                        ${status === "Completed"
+                        ? "selected"
+                        : ""}>
+                        Completed
+                    </option>
+
+                </select>
+
+            </td>
+
+            <td>
+
+                <button
+                    class="delete-btn"
+                    onclick="
+                    deleteRequest(
+                        ${request.id}
+                    )"
+                >
+                    🗑️ Delete
+                </button>
+
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    });
+
+}
+
+
+// ==========================================
+// SEARCH
+// ==========================================
+
+function searchRequests() {
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+        allRequests.filter(request =>
+
+            request.name
+                .toLowerCase()
+                .includes(search)
+
+            ||
+
+            request.email
+                .toLowerCase()
+                .includes(search)
+
+            ||
+
+            request.location
+                .toLowerCase()
+                .includes(search)
+
+            ||
+
+            request.waste_type
+                .toLowerCase()
+                .includes(search)
+
+        );
+
+
+    displayRequests(filtered);
+
+}
+
+
+// ==========================================
+// PIE CHART
+// ==========================================
+
+function createChart(data) {
+
+    const wasteTypes = {};
+
+
+    data.forEach(request => {
+
+        const type =
+            request.waste_type;
+
+        const quantity =
+            Number(request.quantity) || 0;
+
+
+        if (wasteTypes[type]) {
+
+            wasteTypes[type] += quantity;
+
+        } else {
+
+            wasteTypes[type] = quantity;
+
+        }
+
+    });
+
+
+    const labels =
+        Object.keys(wasteTypes);
+
+
+    const values =
+        Object.values(wasteTypes);
+
+
+    if (wasteChart) {
+
+        wasteChart.destroy();
+
+    }
+
+
+    wasteChart =
+        new Chart(
+            document.getElementById("wasteChart"),
+            {
+
+                type: "pie",
+
+                data: {
+
+                    labels: labels,
+
+                    datasets: [{
+
+                        label:
+                            "E-Waste Quantity",
+
+                        data: values
+
+                    }]
+
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    plugins: {
+
+                        legend: {
+
+                            position:
+                                "bottom"
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+// ==========================================
+// UPDATE STATUS
+// ==========================================
+
+async function updateStatus(id, status) {
+
+    try {
+
+        const response =
+            await fetch(
+
+                `http://127.0.0.1:5000/update-status/${id}`,
+
+                {
+
+                    method: "PUT",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body: JSON.stringify({
+
+                        status: status
+
+                    })
+
+                }
+
+            );
+
+
+        const data =
+            await response.json();
+
+
+        alert(data.message);
+
+
+        loadRequests();
+
+
+    } catch (error) {
+
+        alert(
+            "Failed to update status."
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// DELETE
+// ==========================================
+
+async function deleteRequest(id) {
+
+    if (
+        !confirm(
+            "Are you sure you want to delete this request?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+
+                `http://127.0.0.1:5000/delete-request/${id}`,
+
+                {
+
+                    method: "DELETE"
+
+                }
+
+            );
+
+
+        const data =
+            await response.json();
+
+
+        alert(data.message);
+
+
+        loadRequests();
+
+
+    } catch (error) {
+
+        alert(
+            "Failed to delete request."
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// START
+// ==========================================
+
+loadRequests();
+
+</script>
+
+
+</body>
+
+</html>

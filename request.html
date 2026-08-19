@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Pickup Requests - Smart E-Waste</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <style>
+
+        body {
+            margin: 0;
+            background: #f4f7f4;
+            font-family: Arial, sans-serif;
+        }
+
+        /* ==============================
+           NAVBAR
+        ============================== */
+
+        .navbar {
+            background: #1b5e20;
+            padding: 15px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            flex-wrap: wrap;
+        }
+
+        .navbar h2 {
+            color: white;
+            margin: 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 8px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* ==============================
+           CONTAINER
+        ============================== */
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .page-title {
+            color: #1b5e20;
+        }
+
+
+        /* ==============================
+           SEARCH
+        ============================== */
+
+        .search-box {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,.1);
+        }
+
+        .search-box input {
+            width: 70%;
+            padding: 12px;
+
+            border: 1px solid #ccc;
+            border-radius: 7px;
+
+            font-size: 15px;
+        }
+
+        .search-box button {
+            padding: 12px 18px;
+
+            border: none;
+            border-radius: 7px;
+
+            background: #2e7d32;
+            color: white;
+
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .search-box button:hover {
+            background: #1b5e20;
+        }
+
+
+        /* ==============================
+           TABLE
+        ============================== */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+            background: white;
+
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: #2e7d32;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f1f8f1;
+        }
+
+
+        /* ==============================
+           STATUS
+        ============================== */
+
+        select {
+            padding: 7px;
+
+            border-radius: 5px;
+
+            border: 1px solid #bbb;
+        }
+
+
+        /* ==============================
+           DELETE BUTTON
+        ============================== */
+
+        .delete-btn {
+            background: #d32f2f;
+            color: white;
+
+            border: none;
+
+            padding: 8px 12px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        .delete-btn:hover {
+            background: #b71c1c;
+        }
+
+
+        /* ==============================
+           EMPTY MESSAGE
+        ============================== */
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+
+            color: #666;
+        }
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .navbar a {
+                display: inline-block;
+                margin: 5px;
+            }
+
+            .search-box input {
+                width: 100%;
+                box-sizing: border-box;
+                margin-bottom: 10px;
+            }
+
+            .search-box button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     NAVIGATION BAR
+========================================== -->
+
+<nav class="navbar">
+
+    <h2>
+        ♻️ Smart E-Waste
+    </h2>
+
+
+    <div>
+
+        <a href="index.html">
+            🏠 Home
+        </a>
+
+        <a href="requests.html">
+            📋 Requests
+        </a>
+
+        <a href="profile.html">
+            👤 Profile
+        </a>
+
+        <a href="centres.html">
+            🗺️ Centres
+        </a>
+
+        <a href="admin.html">
+            📊 Admin
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ==========================================
+     MAIN CONTENT
+========================================== -->
+
+<div class="container">
+
+
+    <h1 class="page-title">
+        📋 Pickup Requests
+    </h1>
+
+
+    <p>
+        View and manage your e-waste pickup requests.
+    </p>
+
+
+
+    <!-- ======================================
+         SEARCH BOX
+    ======================================= -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search by name, email, location or waste type..."
+            oninput="searchRequests()"
+        >
+
+
+        <button
+            onclick="searchRequests()"
+        >
+            🔍 Search
+        </button>
+
+    </div>
+
+
+
+    <!-- ======================================
+         REQUEST TABLE
+    ======================================= -->
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Name</th>
+
+                    <th>Email</th>
+
+                    <th>Waste Type</th>
+
+                    <th>Quantity</th>
+
+                    <th>Weight</th>
+
+                    <th>Location</th>
+
+                    <th>Pickup Date</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="requestTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ==========================================
+     JAVASCRIPT
+========================================== -->
+
+<script src="request.js"></script>
+
+
+</body>
+
+</html>

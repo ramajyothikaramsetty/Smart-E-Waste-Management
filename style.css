@@ -1,0 +1,305 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7f4;
+    color: #222;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    background: #1b5e20;
+    color: white;
+
+    padding: 16px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #c8e6c9;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 500px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    background:
+        linear-gradient(
+            rgba(27,94,32,.88),
+            rgba(46,125,50,.88)
+        );
+}
+
+.hero-content {
+    max-width: 800px;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+}
+
+.hero-buttons {
+    margin-top: 30px;
+}
+
+.btn {
+    display: inline-block;
+
+    padding: 13px 22px;
+
+    margin: 8px;
+
+    border-radius: 8px;
+
+    background: white;
+    color: #1b5e20;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+.btn.secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+
+/* ================= FEATURES ================= */
+
+.features {
+    padding: 60px 25px;
+    text-align: center;
+}
+
+.features h2 {
+    color: #1b5e20;
+}
+
+.feature-grid {
+    max-width: 1100px;
+
+    margin: 35px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 25px;
+}
+
+.feature-card {
+    background: white;
+
+    padding: 30px 20px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.1);
+}
+
+.feature-icon {
+    font-size: 45px;
+}
+
+.feature-card h3 {
+    color: #2e7d32;
+}
+
+
+/* ================= FORM ================= */
+
+.pickup-section {
+    padding: 60px 20px;
+}
+
+.form-container {
+    max-width: 600px;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.1);
+}
+
+.form-container h2 {
+    color: #1b5e20;
+    text-align: center;
+}
+
+.form-container > p {
+    text-align: center;
+    color: #666;
+}
+
+.form-container label {
+    display: block;
+
+    margin-top: 17px;
+
+    font-weight: bold;
+}
+
+.form-container input,
+.form-container select {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 7px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+}
+
+.submit-btn {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 25px;
+
+    background: #2e7d32;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #1b5e20;
+}
+
+
+/* ================= MESSAGES ================= */
+
+#message {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.success-message {
+    padding: 15px;
+
+    background: #e8f5e9;
+
+    color: #1b5e20;
+
+    border-radius: 8px;
+}
+
+.error-message {
+    padding: 15px;
+
+    background: #ffebee;
+
+    color: #c62828;
+
+    border-radius: 8px;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #1b5e20;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    margin-top: 30px;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 17px;
+    }
+
+    .nav-links {
+        justify-content: center;
+    }
+
+}

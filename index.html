@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart E-Waste Management</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        ♻️ Smart E-Waste
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            🏠 Home
+        </a>
+
+        <a href="request.html">
+            📋 Requests
+        </a>
+
+        <a href="centres.html">
+            🗺️ Centres
+        </a>
+
+        <a href="profile.html">
+            👤 Profile
+        </a>
+
+        <a href="login.html">
+            🔐 Login
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            ♻️ Smart E-Waste
+            Management System
+        </h1>
+
+        <p>
+            Dispose, recycle and manage
+            electronic waste responsibly.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#pickup"
+               class="btn">
+
+                📦 Request Pickup
+
+            </a>
+
+            <a href="centres.html"
+               class="btn secondary">
+
+                📍 Find E-Waste Centres
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features">
+
+    <h2>
+        🌱 Why Choose Our System?
+    </h2>
+
+
+    <div class="feature-grid">
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📦
+            </div>
+
+            <h3>
+                Easy Pickup
+            </h3>
+
+            <p>
+                Request e-waste pickup
+                from your location easily.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🗺️
+            </div>
+
+            <h3>
+                Nearby Centres
+            </h3>
+
+            <p>
+                Find nearby e-waste
+                recycling centres.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>
+                Smart Analytics
+            </h3>
+
+            <p>
+                View waste percentages,
+                charts and collection zones.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🏆
+            </div>
+
+            <h3>
+                Eco Rewards
+            </h3>
+
+            <p>
+                Earn points and badges
+                for responsible recycling.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= PICKUP FORM ================= -->
+
+<section id="pickup"
+         class="pickup-section">
+
+
+    <div class="form-container">
+
+        <h2>
+            📦 E-Waste Pickup Request
+        </h2>
+
+        <p>
+            Enter your details to schedule
+            an e-waste pickup.
+        </p>
+
+
+        <form id="pickupForm">
+
+
+            <label>
+                Name
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+            >
+
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <label>
+                E-Waste Type
+            </label>
+
+            <select id="wasteType"
+                    required>
+
+                <option value="">
+                    Select E-Waste Type
+                </option>
+
+                <option value="Mobile">
+                    Mobile
+                </option>
+
+                <option value="Laptop">
+                    Laptop
+                </option>
+
+                <option value="Battery">
+                    Battery
+                </option>
+
+                <option value="TV">
+                    TV
+                </option>
+
+                <option value="Refrigerator">
+                    Refrigerator
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <label>
+                Quantity
+            </label>
+
+            <input
+                type="number"
+                id="quantity"
+                min="1"
+                placeholder="Enter quantity"
+                required
+            >
+
+
+            <label>
+                Location
+            </label>
+
+            <input
+                type="text"
+                id="location"
+                placeholder="Enter pickup location"
+                required
+            >
+
+
+            <label>
+                Pickup Date
+            </label>
+
+            <input
+                type="date"
+                id="pickupDate"
+                required
+            >
+
+
+            <button type="submit"
+                    class="submit-btn">
+
+                ♻️ Request Pickup
+
+            </button>
+
+        </form>
+
+
+        <div id="message"></div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h3>
+        ♻️ Smart E-Waste Management
+    </h3>
+
+    <p>
+        Making electronic waste management
+        smarter and greener.
+    </p>
+
+    <p>
+        © 2026 Smart E-Waste Management System
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

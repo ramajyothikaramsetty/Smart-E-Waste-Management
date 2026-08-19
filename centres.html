@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>E-Waste Centres | Smart E-Waste</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(
+                135deg,
+                #e8f5e9,
+                #f1f8e9,
+                #e0f2f1
+            );
+            color: #263238;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: linear-gradient(
+                90deg,
+                #1b5e20,
+                #2e7d32,
+                #388e3c
+            );
+
+            padding: 16px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+        }
+
+        .navbar h2 {
+            color: white;
+            margin: 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 7px;
+            font-weight: bold;
+            padding: 8px 10px;
+            border-radius: 6px;
+        }
+
+        .navbar a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1b5e20;
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #546e7a;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+
+        /* ================= SEARCH ================= */
+
+        .search-box {
+            background: white;
+            padding: 22px;
+            margin: 25px 0;
+
+            border-radius: 15px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+            text-align: center;
+        }
+
+        .search-box input {
+            width: 75%;
+            max-width: 650px;
+
+            padding: 14px 18px;
+
+            border: 2px solid #a5d6a7;
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #2e7d32;
+            box-shadow: 0 0 6px rgba(46,125,50,0.3);
+        }
+
+
+        /* ================= SECTION TITLE ================= */
+
+        .section-title {
+            text-align: center;
+            color: #263238;
+            margin-top: 35px;
+        }
+
+
+        /* ================= ZONE GRID ================= */
+
+        #zonesList {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(290px, 1fr));
+
+            gap: 25px;
+
+            margin-top: 25px;
+        }
+
+
+        /* ================= CENTRE CARD ================= */
+
+        .centre-card {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 15px rgba(0,0,0,0.12);
+
+            transition: all 0.3s ease;
+
+            border-left: 7px solid #2e7d32;
+        }
+
+        .centre-card:hover {
+
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.18);
+        }
+
+        .centre-card h3 {
+
+            color: #1b5e20;
+
+            margin-top: 0;
+
+            font-size: 21px;
+        }
+
+        .centre-card p {
+
+            color: #546e7a;
+
+            font-size: 16px;
+        }
+
+
+        /* ================= ZONE BADGES ================= */
+
+        .zone {
+
+            display: inline-block;
+
+            padding: 9px 16px;
+
+            border-radius: 25px;
+
+            font-weight: bold;
+
+            margin-top: 8px;
+
+            font-size: 15px;
+        }
+
+
+        /* GREEN */
+
+        .zone.green {
+
+            background: #c8e6c9;
+
+            color: #1b5e20;
+
+            border: 2px solid #66bb6a;
+        }
+
+
+        /* YELLOW */
+
+        .zone.yellow {
+
+            background: #fff3cd;
+
+            color: #8a6d00;
+
+            border: 2px solid #fbc02d;
+        }
+
+
+        /* RED */
+
+        .zone.red {
+
+            background: #ffcdd2;
+
+            color: #b71c1c;
+
+            border: 2px solid #ef5350;
+        }
+
+
+        /* ================= MAP BUTTON ================= */
+
+        .map-btn {
+
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 11px 17px;
+
+            background: linear-gradient(
+                135deg,
+                #2e7d32,
+                #43a047
+            );
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .map-btn:hover {
+
+            background: linear-gradient(
+                135deg,
+                #1b5e20,
+                #2e7d32
+            );
+
+            transform: scale(1.04);
+        }
+
+
+        /* ================= ZONE INFORMATION ================= */
+
+        .zone-info {
+
+            background: white;
+
+            padding: 25px;
+
+            margin-top: 40px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .zone-info h2 {
+
+            text-align: center;
+
+            color: #1b5e20;
+
+            margin-bottom: 25px;
+        }
+
+        .info-item {
+
+            padding: 15px;
+
+            margin: 12px 0;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+        }
+
+
+        .green-info {
+
+            background: #e8f5e9;
+
+            border-left: 6px solid #43a047;
+
+        }
+
+        .yellow-info {
+
+            background: #fffde7;
+
+            border-left: 6px solid #fbc02d;
+
+        }
+
+        .red-info {
+
+            background: #ffebee;
+
+            border-left: 6px solid #e53935;
+
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            text-align: center;
+
+            margin-top: 50px;
+
+            padding: 25px;
+
+            background: linear-gradient(
+                90deg,
+                #1b5e20,
+                #2e7d32
+            );
+
+            color: white;
+
+            line-height: 1.8;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 12px;
+
+            }
+
+            .navbar a {
+
+                display: inline-block;
+
+                margin: 3px;
+
+            }
+
+            .search-box input {
+
+                width: 95%;
+
+            }
+
+            h1 {
+
+                font-size: 27px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav class="navbar">
+
+    <h2>♻️ Smart E-Waste</h2>
+
+    <div>
+
+        <a href="index.html">🏠 Home</a>
+
+        <a href="request.html">📋 Requests</a>
+
+        <a href="profile.html">👤 Profile</a>
+
+        <a href="centres.html">🗺️ Centres</a>
+
+        <a href="admin.html">📊 Admin</a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+    <h1>
+        🗺️ Nearby E-Waste Centres
+    </h1>
+
+    <p class="subtitle">
+        Find recycling centres and monitor
+        e-waste levels by location.
+    </p>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="zoneSearch"
+            placeholder="🔍 Search location or zone..."
+            onkeyup="searchZones()"
+        >
+
+    </div>
+
+
+    <!-- ZONES -->
+
+    <h2 class="section-title">
+        🟢 🟡 🔴 E-Waste Zone Status
+    </h2>
+
+    <div id="zonesList">
+
+        <p style="text-align:center;">
+            Loading zone information...
+        </p>
+
+    </div>
+
+
+    <!-- ZONE INFORMATION -->
+
+    <div class="zone-info">
+
+        <h2>
+            📊 Understanding the Zones
+        </h2>
+
+
+        <div class="info-item green-info">
+
+            🟢 <strong>Green Zone</strong>
+
+            <br>
+
+            Low e-waste activity.
+            Recycling centres can handle the current requests.
+
+        </div>
+
+
+        <div class="info-item yellow-info">
+
+            🟡 <strong>Yellow Zone</strong>
+
+            <br>
+
+            Moderate e-waste activity.
+            More recycling capacity may be required.
+
+        </div>
+
+
+        <div class="info-item red-info">
+
+            🔴 <strong>Red Zone</strong>
+
+            <br>
+
+            High e-waste activity.
+            Priority collection and recycling is recommended.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    ♻️ <strong>Smart E-Waste Management System</strong>
+
+    <br>
+
+    Responsible Recycling for a Cleaner Future 🌱
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="centres.js"></script>
+
+
+</body>
+
+</html>
