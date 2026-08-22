@@ -12,7 +12,7 @@ async function loadRequests() {
     try {
 
         const response = await fetch(
-            "http://127.0.0.1:5000/pickup-requests"
+            "https://smart-e-waste-management.onrender.com/pickup-requests"
         );
 
         allRequests = await response.json();
@@ -198,7 +198,7 @@ async function updateStatus(id, status) {
 
         const response = await fetch(
 
-            `http://127.0.0.1:5000/update-status/${id}`,
+            `https://smart-e-waste-management.onrender.com/update-status/${id}`,
 
             {
 
@@ -258,7 +258,7 @@ async function deleteRequest(id) {
 
         const response = await fetch(
 
-            `http://127.0.0.1:5000/delete-request/${id}`,
+            `https://smart-e-waste-management.onrender.com/delete-request/${id}`,
 
             {
 
@@ -446,7 +446,7 @@ async function logout() {
     try {
 
         await fetch(
-            "http://127.0.0.1:5000/logout",
+            "https://smart-e-waste-management.onrender.com/logout",
             {
                 method: "POST",
                 credentials: "include"
