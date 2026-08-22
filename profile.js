@@ -17,7 +17,7 @@ async function loadProfile() {
 
         const response = await fetch(
 
-            `http://127.0.0.1:5000/profile/${encodeURIComponent(email)}`
+            `https://smart-e-waste-management.onrender.com/profile/${encodeURIComponent(email)}`
 
         );
 
@@ -82,7 +82,7 @@ async function loadPercentage() {
 
         const response = await fetch(
 
-            "http://127.0.0.1:5000/waste-percentage"
+            "https://smart-e-waste-management.onrender.com/waste-percentage"
 
         );
 
@@ -172,7 +172,7 @@ async function logout() {
 
         await fetch(
 
-            "http://127.0.0.1:5000/logout",
+            "https://smart-e-waste-management.onrender.com/logout",
 
             {
 
